@@ -85,7 +85,7 @@
                 if(typeof(callback) === "function")
                 {
                     callback(false, error);
-                }	
+                }
 			}
 		},
 
@@ -117,7 +117,7 @@
 				}
 				// IE 6 and older
 				else if (window.ActiveXObject)
-				{ 
+				{
 				    var httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 				}
 
@@ -135,17 +135,17 @@
 	                            {
 	                                callback(element, response);
 	                            }
-							} 
+							}
 							else
 							{
 								alert('There was a problem with the request.');
 							}
 						}
 					};
-				    httpRequest.open('POST', '/Assets/Captcha/Captcha.php', true);
+				    httpRequest.open('POST', '/assets/captcha/captcha.php', true);
 				    httpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 					httpRequest.setRequestHeader("Content-length", posts.length);
-					httpRequest.setRequestHeader("Connection", "close");		    
+					httpRequest.setRequestHeader("Connection", "close");
 				    //httpRequest.overrideMimeType("application/json");
 				    httpRequest.send(posts);
 			    }
