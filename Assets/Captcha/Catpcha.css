@@ -1,0 +1,63 @@
+.link {
+	display: block;
+	padding: 25px 0;
+	color: #999;
+	font-size: 14px;
+	line-height: 1;
+	text-align: center;
+}
+
+.link:hover {
+    text-decoration: none;
+}  
+
+.img {
+	height: 10px;
+	margin-left: 2px;
+	width: 62px;
+	vertical-align: baseline;
+}
+
+
+/* Captcha */
+.captcha .todo {
+  margin-bottom: 2em; 
+  font-size: 1.25em;
+}
+
+.captcha .serie {}
+
+.captcha .serie li {
+  position: relative;
+  overflow: hidden;
+}
+
+.captcha .serie .control-label {
+  border: 2px dashed #b5b7ba;
+  border-radius: 5px;
+  padding-top: 0;
+  width: 40px;
+
+  background-color: #fff;
+  color: #333; 
+
+  font-size: 25px;
+  line-height: 40px;
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.captcha .serie input:checked ~ label {
+  border: 2px solid #333;
+}
+
+.captcha .serie input {
+  position: absolute;
+  left: -20px;
+  top: -20px;
+}
+
+.captcha .serie input:checked {
+  height: 40px;
+}
