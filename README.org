@@ -1,4 +1,4 @@
-#+title: Captchacha: solution basique de vérification de formulaire
+#+title: Captchacha: solution de vérification de formulaire
 
 ** Présentation
 
