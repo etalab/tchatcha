@@ -9,14 +9,14 @@ class Base32 {
         'Y', 'Z', '2', '3', '4', '5', '6', '7', // 31
         '='  // padding char
     );
-   
+
    private static $flippedMap = array(
         'A'=>'0', 'B'=>'1', 'C'=>'2', 'D'=>'3', 'E'=>'4', 'F'=>'5', 'G'=>'6', 'H'=>'7',
         'I'=>'8', 'J'=>'9', 'K'=>'10', 'L'=>'11', 'M'=>'12', 'N'=>'13', 'O'=>'14', 'P'=>'15',
         'Q'=>'16', 'R'=>'17', 'S'=>'18', 'T'=>'19', 'U'=>'20', 'V'=>'21', 'W'=>'22', 'X'=>'23',
         'Y'=>'24', 'Z'=>'25', '2'=>'26', '3'=>'27', '4'=>'28', '5'=>'29', '6'=>'30', '7'=>'31'
     );
-   
+
     /**
      *    Use padding false when encoding for urls
      *
@@ -33,7 +33,7 @@ class Base32 {
         $fiveBitBinaryArray = str_split($binaryString, 5);
         $base32 = "";
         $i=0;
-        while($i < count($fiveBitBinaryArray)) {   
+        while($i < count($fiveBitBinaryArray)) {
             $base32 .= self::$map[base_convert(str_pad($fiveBitBinaryArray[$i], 5,'0'), 2, 10)];
             $i++;
         }
@@ -45,7 +45,7 @@ class Base32 {
         }
         return $base32;
     }
-   
+
     public static function decode($input) {
         if(empty($input)) return;
         $paddingCharCount = substr_count($input, self::$map[32]);
@@ -85,17 +85,17 @@ class Base32 {
 		$secur = '';
 		$countLetters = rand(5, 15);
 		$positions = [];
-		
+
 		$text = $this->lang['fr'][$this->rule];
 
 		$securCryptKey = 'a42b';
 
 		$result = '<div class="require">';
 		$result .= '<div class="captcha form-group {data.additionalClass}">';
-		$result .= '<f:if condition="{data.error}"><p class="help-block error"><f:translate key="{data.error}" extensionName="etalabcha_form" /></p></f:if>';
-		$result .= '<p class="obligatoires"><f:translate key="form.captcha.help" extensionName="etalabcha_form" /></p>';
+		$result .= '<f:if condition="{data.error}"><p class="help-block error"><f:translate key="{data.error}" extensionName="captchacha_form" /></p></f:if>';
+		$result .= '<p class="obligatoires"><f:translate key="form.captcha.help" extensionName="captchacha_form" /></p>';
 		$result .= '<p class="text-center">'.vsprintf($text, $this->numbers).'</p>';
-		$result .= ' <label for="{settings.prefix}_captcha" class="control-label sr-only {data.labelClass}"><f:render partial="Require" /><f:translate key="form.captcha.label" extensionName="etalabcha_form" /></label>';
+		$result .= ' <label for="{settings.prefix}_captcha" class="control-label sr-only {data.labelClass}"><f:render partial="Require" /><f:translate key="form.captcha.label" extensionName="captchacha_form" /></label>';
 		$result .= '<ul class="serie list-inline list-unstyled text-center">';
 		foreach($this->stringValue as $val)
 		{
@@ -118,7 +118,7 @@ class Base32 {
 		$result .= '</ul>';
 		$result .= '</div>';
 		$result .= '</div>';
-		
+
 		return $result;
 	}
 
@@ -166,7 +166,7 @@ class Base32 {
 		$retenue = '0';
 		$resultat = '';
 		$position = $len1;
-		 
+
 		while ($position > 0)
 		{
 			$position -= 1;
@@ -202,11 +202,11 @@ class Base32 {
 		    {
 				$retenue = '1';
 				$somme = '0';
-		    } 
+		    }
 		    else if($temp === '1 + 1 + 1')
 		    {
 				$retenue = '1';
-				$somme = '1';	
+				$somme = '1';
 		    }
 		    else
 		    {
@@ -283,15 +283,15 @@ class Base32 {
 		$retenue = 0;
 		$resultat = '';
 		$position = $len1;
-		 
+
 		while ($position > 0)
 		{
 			$position -= 1;
 
 		    $chiffre_a = substr($temp1, $position, 1);
 		    $chiffre_b = substr($temp2, $position, 1);
-		    
-		    if($retenue == 1) $chiffre_a = 0; 
+
+		    if($retenue == 1) $chiffre_a = 0;
 
 		   	$somme = $chiffre_a - $chiffre_b;
 
@@ -300,7 +300,7 @@ class Base32 {
 			if($somme == -1)
 			{
 				$retenue = 1;
-				$somme = 1;						
+				$somme = 1;
 			}
 			else
 			{
@@ -377,17 +377,17 @@ class Base32 {
 		$retenue = 0;
 		$resultat = '';
 		$position = $len1;
-		 
+
 		while ($position > 0)
 		{
 			$position -= 1;
 
 		    $chiffre_a = substr($temp1, $position, 1);
 		    $chiffre_b = substr($temp2, $position, 1);
-		    
+
 		    if($mode == 'decrypt')
 		    {
-		    	if($retenue == 1) $chiffre_a = 0; 
+		    	if($retenue == 1) $chiffre_a = 0;
 
 		   		$somme = $chiffre_a - $chiffre_b;
 		   	}
@@ -404,9 +404,9 @@ class Base32 {
 		    if($mode == 'crypt')
 		    {
 				if($somme == 3)
-				{		   	
+				{
 					$retenue = 1;
-					$somme = 1;		
+					$somme = 1;
 				}
 				else if($somme == 2)
 				{
@@ -424,7 +424,7 @@ class Base32 {
 				if($somme == -1)
 				{
 					$retenue = 1;
-					$somme = 1;						
+					$somme = 1;
 				}
 				else
 				{
@@ -434,7 +434,7 @@ class Base32 {
 
 			$resultat = $resultat.''.$somme;
 
-			
+
 		}
 
 		$temp3 = $resultat;
@@ -464,7 +464,7 @@ class Base32 {
 	private function hexbin($hex)
 	{
 		$bin = '';
-		
+
 		for($i=0;$i<strlen($hex);$i++)
 		{
 			$bin.=str_pad(decbin(hexdec($hex{$i})),4,'0',STR_PAD_LEFT);

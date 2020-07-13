@@ -2,25 +2,25 @@
 
 (function(){
 
-	window.etalabCha = {
+	window.captchaCha = {
 
-		etalabCha : this,
+		captchaCha : this,
 
 		init : () => {
 
 			let elements = document.querySelectorAll('.captcha');
 
 			elements.forEach(function(element){
-				etalabCha.prepare(element);
+				captchaCha.prepare(element);
 			});
 
 		},
 
 		prepare : (element) => {
 
-			etalabCha.execute(element, 'render', {}, function(element, result){
+			captchaCha.execute(element, 'render', {}, function(element, result){
 
-				etalabCha.render(element, result);
+				captchaCha.render(element, result);
 
 			});
 		},
@@ -52,7 +52,7 @@
 			var params = {'checkKey' : '', 'test' : ''};
 			if(element) params['checkKey'] = element.getAttribute('data-checkKey');
 
-			var checkBoxes = parent.querySelectorAll("input[name='tx_etalabchaform_pi1[captcha][]']");
+			var checkBoxes = parent.querySelectorAll("input[name='tx_captchachaform_pi1[captcha][]']");
 			for(let i = 0; i < checkBoxes.length; i++)
 			{
 				if(checkBoxes[i].checked)
@@ -63,14 +63,14 @@
 
 			if(params['checkKey'] && params['test'])
 			{
-				etalabCha.execute(element, 'validate', params, function(element, result){
+				captchaCha.execute(element, 'validate', params, function(element, result){
 
 					error = '';
 
 					if(!result.response)
 					{
 						error = 'msgError2';
-						etalabCha.render(element, result);
+						captchaCha.render(element, result);
 					}
 
                     if(typeof(callback) === "function")
@@ -157,5 +157,5 @@
 })();
 
 document.addEventListener('DOMContentLoaded', function(event){
-    window.etalabCha.init();
+    window.captchaCha.init();
 });

@@ -3,14 +3,14 @@
 define("__STRING_LENGTH__", 8);
 define("__KEY_LENGTH__", 3);
 
-class tx_etalabchaform_captcha
+class tx_captchachaform_captcha
 {
 	// Same as class name
-	protected $prefixId = 'tx_etalabchaform_pi1';	
-		
-	// The extension key.	
-	protected $extKey = 'etalabcha_form';
-	
+	protected $prefixId = 'tx_captchachaform_pi1';
+
+	// The extension key.
+	protected $extKey = 'captchacha_form';
+
 	protected $_contentUid = 0;
 
 	protected $_errorArray = array();
@@ -20,7 +20,7 @@ class tx_etalabchaform_captcha
 	protected $stringLength = 0;
 	protected $keyLength = 0;
 	protected $captchaString = array();
-	
+
 	protected $captchaKey = "";
 
 	protected $series = array(
@@ -105,8 +105,8 @@ class tx_etalabchaform_captcha
 			'form.captcha.rule8' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les caractères avec un accent</strong> de la série',
 			'form.captcha.label' => '',
 			'form.require' => 'Champs obligatoires',
-			'form.error.field' => 'Vous n\'avez pas saisi correctement ce champ',	
-			'form.error.global' => 'Le formulaire n\'a pas été saisi correctement.<br />Veuillez corriger les erreurs et valider à nouveau',		
+			'form.error.field' => 'Vous n\'avez pas saisi correctement ce champ',
+			'form.error.global' => 'Le formulaire n\'a pas été saisi correctement.<br />Veuillez corriger les erreurs et valider à nouveau',
 			'form.captcha.fieldset' => 'Validation',
 			'form.captcha.label' => 'La clé de validation',
 			'form.captcha.help' => '',
@@ -136,14 +136,14 @@ class tx_etalabchaform_captcha
 		//$alphaNumerique = array_merge(range("A", "Z"), range(0, 9));;
 
 		do {
-		
+
 			$caractere = $alphaNumerique[rand(0, sizeof($alphaNumerique) - 1)];
-			
+
 			if($caractere != '0' && $caractere != 'O')
 			{
 				if (ord($caractere)) array_push($this->captchaString, $caractere);
 			}
-			
+
 		} while (sizeof($this->captchaString) < $this->stringLength);
 
 
@@ -184,8 +184,8 @@ class tx_etalabchaform_captcha
 		$rang = rand(0, (count($strings) - 1));
 		$this->setStringLength($strings[$rang]);
 		unset($rang);
-		
-		
+
+
 		// Select rule by random
 		$count = (count($this->rules) -1);
 
@@ -209,7 +209,7 @@ class tx_etalabchaform_captcha
 		{
 			$length = $rule['number'];
 		}
-		
+
 		switch($rule['type'])
 		{
 			case 'first' :
@@ -219,11 +219,11 @@ class tx_etalabchaform_captcha
 				$this->numbers[] = $length;
 
 				$tmp = implode('', $this->captchaString);
-				
+
 				$this->captchaKey = substr($tmp, 0, $length);
-				
+
 				break;
-			
+
 			case 'last' :
 
 				$this->captchaString = $this->generateString($rule['series']);
@@ -231,19 +231,19 @@ class tx_etalabchaform_captcha
 				$this->numbers[] = $length;
 
 				$tmp = implode('', $this->captchaString);
-				
+
 				$this->captchaKey = substr($tmp, - $length);
-				
+
 				break;
-			
+
 			case 'combi' :
 
 				$this->captchaString = $this->generateString($rule['series']);
-				
+
 				$_numberArray = $rule['numbers'];
-				
+
 				$_tempRang = rand(0, (count($_numberArray) - 1));
-				
+
 				$split = explode(',', $_numberArray[$_tempRang]);
 
 				if($split[0] == '1')
@@ -259,17 +259,17 @@ class tx_etalabchaform_captcha
 				else
 				{
 					$this->numbers[] = $split[0];
-					$this->numbers[] = $split[1];					
+					$this->numbers[] = $split[1];
 				}
 
 				$_first = $split[0];
 				$_last = $split[1];
-				
-				$tmp = implode('', $this->captchaString);				
-				
+
+				$tmp = implode('', $this->captchaString);
+
 				$this->captchaKey = substr($tmp, 0, $_first);
 				$this->captchaKey .= substr($tmp, - $_last);
-				
+
 				break;
 
 			case 'unique' :
@@ -298,7 +298,7 @@ class tx_etalabchaform_captcha
 				}
 
 				//$newCombinaison = array_merge($this->captchaString, $complement);
-				
+
 
 				$this->captchaString = $newCombinaison;
 
@@ -310,7 +310,7 @@ class tx_etalabchaform_captcha
 		if($_GET['debug'])
 		{
 			echo 'numero de la regle : '.$rang.'<br />';
-			echo 'type de regle : '.$rule['type'].'<br />';			
+			echo 'type de regle : '.$rule['type'].'<br />';
 			echo 'nombre de caractère : '.implode(', ', $this->numbers).'<br />';
 			echo 'carctères affichés : '.implode(', ', $this->captchaString).'<br />';
 			echo 'clé à trouver : '.$this->captchaKey.'<br />';
@@ -322,8 +322,8 @@ class tx_etalabchaform_captcha
 			$this->securCryptKey = $this->generateSecurCryptKey();
 
 			session_start();
-			$_SESSION['tx_etalabchaform_captcha_special'][$this->securCryptKey]['expire'] = false;
-			$_SESSION['tx_etalabchaform_captcha_special'][$this->securCryptKey]['key'] = $this->captchaKey;	
+			$_SESSION['tx_captchachaform_captcha_special'][$this->securCryptKey]['expire'] = false;
+			$_SESSION['tx_captchachaform_captcha_special'][$this->securCryptKey]['key'] = $this->captchaKey;
 		}
 	}
 
@@ -373,7 +373,7 @@ class tx_etalabchaform_captcha
 	private function setStringLength($valeur)
 	{
 		$this->stringLength = __STRING_LENGTH__;
-		if ((int) $valeur > 0) $this->stringLength = $valeur;	
+		if ((int) $valeur > 0) $this->stringLength = $valeur;
 	}
 
 
@@ -383,7 +383,7 @@ class tx_etalabchaform_captcha
 	private function setKeyLength($valeur)
 	{
 		$this->keyLength = __KEY_LENGTH__;
-		if ((int) $valeur > 0) $this->keyLength = $valeur;	
+		if ((int) $valeur > 0) $this->keyLength = $valeur;
 	}
 
 
@@ -401,9 +401,9 @@ class tx_etalabchaform_captcha
 
 		if(!empty($key) && !empty($test))
 		{
-			if(isset($_SESSION['tx_etalabchaform_captcha_special'][$key]))
+			if(isset($_SESSION['tx_captchachaform_captcha_special'][$key]))
 			{
-				if($_SESSION['tx_etalabchaform_captcha_special'][$key]['key'] === $test)
+				if($_SESSION['tx_captchachaform_captcha_special'][$key]['key'] === $test)
 				{
 					$result = true;
 				}
@@ -418,7 +418,7 @@ class tx_etalabchaform_captcha
 		$result = array();
 
 		$this->makeString();
-		$this->generateKey();	
+		$this->generateKey();
 
 		$result = array(
 			'type' => 'captcha'
@@ -428,17 +428,17 @@ class tx_etalabchaform_captcha
 			, 'error' => ''
 			, 'additionalClass' => ''
 		);
-		
+
 		if(is_array($this->_errorArray) && count($this->_errorArray) > 0 && array_key_exists('captcha', $this->_errorArray))
 		{
 			$result['additionalClass'] = 'has-error';
 			$result['error'] = $this->_errorArray['captcha'];
 		}
-		
+
 		return $result;
-	}	
-	
-	
+	}
+
+
 	public function makeHtmlCode()
 	{
 		$result = '';
@@ -452,7 +452,7 @@ class tx_etalabchaform_captcha
 		{
 			$this->numbers[$key] = $this->lang['fr']['text.number.'.$val];
 		}
-		
+
 		$text = $this->lang['fr']['form.captcha.'.$this->rule];
 
 		$result = '<div class="require">';
@@ -472,7 +472,7 @@ class tx_etalabchaform_captcha
 		$result .= '</ul>';
 		$result .= '</div>';
 		$result .= '</div>';
-		
+
 		return $result;
 	}
 }
@@ -506,7 +506,7 @@ if(!empty($_POST))
 
 $result = ['error' => '', 'response' => '', 'html' => '', 'debug' => '', 'checkKey' => ''];
 
-$secure = new tx_etalabchaform_captcha();
+$secure = new tx_captchachaform_captcha();
 
 //$result['debug'] = $_POST;
 
@@ -538,7 +538,7 @@ switch(trim($arguments['action']))
 
 		if(!$result['response'])
 		{
-			unset($_SESSION['tx_etalabchaform_captcha_special'][$arguments['checkKey']]);
+			unset($_SESSION['tx_captchachaform_captcha_special'][$arguments['checkKey']]);
 
 			$result['html'] = $secure->makeHtmlCode();
 			$result['checkKey'] = $secure->getSecurCryptKey();
