@@ -1,6 +1,6 @@
 #+title: Captchacha: solution basique de vérification de formulaire
 
-* Présentation
+** Présentation
 
 Ce dépôt contient une solution de Captcha mettant l'accès sur
 l'accessibilité.
@@ -16,10 +16,10 @@ sont possibles.
 Si vous souhaitez contribuer, n'hésitez pas à [[mailto:opensource@data.gouv.fr][nous contacter]] ou à
 [[https://github.com/etalab/etalabcha/issues][ouvrir une issue]].
 
-* Documentation
-** Principe de fonctionnement
+** Documentation
+*** Principe de fonctionnement
 
-*** Côté frentend / Javascript
+**** Côté frentend / Javascript
 
 La partie JS est codée en natif. Le code est totalement indépendant de
 toute autre librairie JS.
@@ -81,7 +81,7 @@ On peut enlever cette étape et l’inclure dans l’initialisation du
 captcha et injecter le onsubmit, mais il faut se garder la possibilité
 d’un callback ou promise.
 
-*** Côté backend / PHP (ou tout autre langage de programmation)
+**** Côté backend / PHP (ou tout autre langage de programmation)
 
 La partie PHP est codée en natif. Le code est totalement indépendant
 de toute autre librairie PHP.
@@ -95,7 +95,7 @@ fonctionnalités selon les besoins :
 À l’appel de celui-ci le code crée une instance de la classe
 =tx_captchachaform_captcha()=.
 
-** Éléments d'accessibilité
+*** Éléments d'accessibilité
 
 Concernant l’accessibilité nous voulions un captcha textuel. A
 l’origine ce captcha était un simple champ texte et l’internaute
@@ -105,7 +105,7 @@ captcha plus conviviale. Le tout reste responsive.
 
 Evolution possible, ajout un bouton son, pour une lecture vocal.
 
-** Intégrer à TYPO3
+*** Intégrer à TYPO3
 
 La solution captcha est complétement intégré dans nos CMS TYPO3. Elle
 fait partie de notre solution "Form", extension de création et de
@@ -119,7 +119,7 @@ et test de la clé en ajax.
 
 Mais la méthode est identique dans TYPO3 que dans une autre solution.
 
-** Intégrer ailleurs
+*** Intégrer ailleurs
 
 Au chargement du formulaire (ou à la création), instanciez la class
 =tx_captchachaform_captcha=.
@@ -149,7 +149,7 @@ de validation,
 
 le retour de "validate" est un boolean.
 
-* Licence
+** Licence
 
 Le code source de ce dépôt est publié sous [[file:LICENSE][licence Apache 2.0]].
 
