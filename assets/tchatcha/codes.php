@@ -91,11 +91,11 @@ class Base32 {
 		$securCryptKey = 'a42b';
 
 		$result = '<div class="require">';
-		$result .= '<div class="captcha form-group {data.additionalClass}">';
-		$result .= '<f:if condition="{data.error}"><p class="help-block error"><f:translate key="{data.error}" extensionName="captchacha_form" /></p></f:if>';
-		$result .= '<p class="obligatoires"><f:translate key="form.captcha.help" extensionName="captchacha_form" /></p>';
+		$result .= '<div class="tchatcha form-group {data.additionalClass}">';
+		$result .= '<f:if condition="{data.error}"><p class="help-block error"><f:translate key="{data.error}" extensionName="tchatchacha_form" /></p></f:if>';
+		$result .= '<p class="obligatoires"><f:translate key="form.tchatcha.help" extensionName="tchatchacha_form" /></p>';
 		$result .= '<p class="text-center">'.vsprintf($text, $this->numbers).'</p>';
-		$result .= ' <label for="{settings.prefix}_captcha" class="control-label sr-only {data.labelClass}"><f:render partial="Require" /><f:translate key="form.captcha.label" extensionName="captchacha_form" /></label>';
+		$result .= ' <label for="{settings.prefix}_tchatcha" class="control-label sr-only {data.labelClass}"><f:render partial="Require" /><f:translate key="form.tchatcha.label" extensionName="tchatchacha_form" /></label>';
 		$result .= '<ul class="serie list-inline list-unstyled text-center">';
 		foreach($this->stringValue as $val)
 		{
@@ -106,7 +106,7 @@ class Base32 {
 
 			//echo $secur.'<br />';
 
-			$result .= '<li><input name="{settings.prefix}[captcha][]" id="{data.type}_opt{iterator.cycle}" value="'.$val.'" type="checkbox" /><label for="{data.type}_opt{iterator.cycle}" class="control-label">'.$val.'</label></li>';
+			$result .= '<li><input name="{settings.prefix}[tchatcha][]" id="{data.type}_opt{iterator.cycle}" value="'.$val.'" type="checkbox" /><label for="{data.type}_opt{iterator.cycle}" class="control-label">'.$val.'</label></li>';
 
 			//$secur = $this->securDecrypt($secur, $securCryptKey);
 

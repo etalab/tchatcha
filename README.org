@@ -1,9 +1,9 @@
-#+title: Captchacha: solution de vérification de formulaire
+#+title: Tchatcha: solution de vérification de formulaire
 
 ** Présentation
 
-Ce dépôt contient une solution de Captcha mettant l'accès sur
-l'accessibilité.
+Ce dépôt contient une solution de test (à la Captcha®) mettant l'accès
+sur l'accessibilité.
 
 Le code a été initialement développée par la société [[https://www.artifica.fr/][Artifica]], dans le
 contexte de la validation de formulaires pour le système de gestion de
@@ -22,7 +22,7 @@ Cette solution a d'abord été conçue pour une intégration au système de
 gestion de contenu [[https://sill.etalab.gouv.fr/fr/software?id=203][TYPO3]].  Il devrait néanmoins servir de base pour
 une intégration ailleurs.  Ces éléments de documentation peuvent être
 améliorés : si vous avez une question ou si un point n'est pas clair,
-n'hésitez pas à [[https://github.com/etalab/captchacha/issues/new][ouvrir une issue]].
+n'hésitez pas à [[https://github.com/etalab/tchatcha/issues/new][ouvrir une issue]].
 
 *** Principe de fonctionnement
 
@@ -33,59 +33,59 @@ de toute autre librairie Javascript.
 
 Mettre l’appel du fichier dans le pied de page du site:
 
-: <script src="assets/captcha/captcha.js" type="text/javascript"></script>
+: <script src="assets/tchatcha/tchatcha.js" type="text/javascript"></script>
 
 Ajouter à la fin du formulaire une balise de réception.
 
-: <div class="captcha"></div>
+: <div class="tchatcha"></div>
 
 À la fin du chargement de la page, le code Javascript va initialiser
-le captcha dans le formulaire.
+le test dans le formulaire.
 
-La fonction =init()= est lancée sur les éléments =.captcha=.
+La fonction =init()= est lancée sur les éléments =.tchatcha=.
 
 On peut effectivement avoir plusieurs formulaires dans la même page
-avec des résolutions de captcha différentes.
+avec des résolutions de test différentes.
 
 Chaque élément passe par la fonction =prepare()= qui transmet la demande
-de création d’un captcha via la fonction =execute()= au PHP.
+de création d’un test via la fonction =execute()= au PHP.
 
 Le retour de réponse est traité par la fonction =render()= qui injecte
-le code dans l’élément =.captcha=.
+le code dans l’élément =.tchatcha=.
 
-Pour lancer la vérification du captcha, ajouter un événement au =submit=
+Pour lancer la vérification du test, ajouter un événement au =submit=
 du formulaire.
 
 Cette partie a été ajouté afin d’avoir la main mise sur le retour de
-la validation du captcha et ainsi agir selon la réponse.
+la validation du test et ainsi agir selon la réponse.
 
 Cela permet en autre d’envoyer le formulaire si la réponse est
 positive, ou de lancer d’autres tests.
 
 : document.forms['myForm857'].onsubmit = function(event){
-:     window.captcha.validation(this, function(response, error){
+:     window.tchatcha.validation(this, function(response, error){
 :         if(!response)
 :         {
 :             if(error == 'msgError1')
 :             {
-:                 alert('Merci de remplir le captcha');
+:                 alert('Merci de répondre au test');
 :             }
 : 
 :             if(error == 'msgError2')
 :             {
-:                 alert('Erreur sur le captcha. Merci de recommencer');
+:                 alert('Erreur sur la réponse au test. Merci de recommencer');
 :             }
 :         }
 :         else
 :         {
-:             alert('Le captcha est ok');
+:             alert('Le test est validé');
 :         }
 :     });
 :     event.preventDefault();
 : };
 
 On peut enlever cette étape et l’inclure dans l’initialisation du
-captcha et injecter le onsubmit, mais il faut se garder la possibilité
+test et injecter le onsubmit, mais il faut se garder la possibilité
 d’un callback ou promise.
 
 **** Côté backend / PHP (ou tout autre langage de programmation)
@@ -96,26 +96,26 @@ de toute autre librairie PHP.
 Le programme réagit à deux sortes de demandes, on peut étoffer les
 fonctionnalités selon les besoins :
 
-- render : création d’un captcha
-- validate : vérification du captcha
+- render : création d’un test
+- validate : vérification du test
 
 À l’appel de celui-ci le code crée une instance de la classe
-=tx_captchachaform_captcha()=.
+=tx_tchatchaform_tchatcha()=.
 
 *** Éléments d'accessibilité
 
-Concernant l’accessibilité, le but recherché est d'avoir un captcha
-textuel.  À l’origine ce captcha était un simple champ texte et
-l’internaute devait rentrer la résolution du captcha.  Nous sommes
+Concernant l’accessibilité, le but recherché est d'avoir un test
+textuel.  À l’origine ce test était un simple champ texte et
+l’internaute devait rentrer la résolution du test.  Nous sommes
 passé sur des boîte à cocher invisibles avec un affichage de carrés
-afin de rendre le captcha plus convivial.  Le tout reste /responsive/.
+afin de rendre le test plus convivial.  Le tout reste /responsive/.
 
 Une évolution possible est d'ajouter un bouton son, pour une lecture
 vocale.
 
 *** Intégrer à TYPO3
 
-La solution captcha est complétement intégrable dans le système de
+La solution Tchatcha est complétement intégrable dans le système de
 gestion de contenu TYPO3.
 
 A l’inverse de la première méthode en javascript direct, la validation
@@ -129,16 +129,16 @@ Mais la méthode est identique dans TYPO3 que dans une autre solution.
 *** Intégrer ailleurs
 
 Au chargement du formulaire (ou à la création), instanciez la class
-=tx_captchachaform_captcha=:
+=tx_tchatchaform_tchatcha=:
 
-: $secure = new tx_captchachaform_captcha();
+: $secure = new tx_tchatchaform_tchatcha();
 
 Il est possible d’injecter les messages d’erreurs pour les inclures
 dans le rendu.
 
 : $secure->_errorArray = $this->_arrErrors;
 
-Récupérez le rendu =html= du captcha:
+Récupérez le rendu =html= du test:
 
 : echo $secure->makeHtmlCode();
 
@@ -151,7 +151,7 @@ Enfin à la soumission du formulaire en =GET= ou en =POST=, on teste la
 valeur envoyée par l’internaute et la clé de chiffrement dans votre
 code de validation,
 
-: $secure = new tx_captchachaform_captcha();
+: $secure = new tx_tchatchaform_tchatcha();
 : $response = $secure->validate($arguments['checkKey'], $arguments['test']);
 
 Le retour de =validate= est un booléen.

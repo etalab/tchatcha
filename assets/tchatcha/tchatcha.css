@@ -19,20 +19,20 @@
 }
 
 
-/* Captcha */
-.captcha .todo {
+/* Captcha® */
+.tchatcha .todo {
   margin-bottom: 2em; 
   font-size: 1.25em;
 }
 
-.captcha .serie {}
+.tchatcha .serie {}
 
-.captcha .serie li {
+.tchatcha .serie li {
   position: relative;
   overflow: hidden;
 }
 
-.captcha .serie .control-label {
+.tchatcha .serie .control-label {
   border: 2px dashed #b5b7ba;
   border-radius: 5px;
   padding-top: 0;
@@ -48,16 +48,16 @@
   cursor: pointer;
 }
 
-.captcha .serie input:checked ~ label {
+.tchatcha .serie input:checked ~ label {
   border: 2px solid #333;
 }
 
-.captcha .serie input {
+.tchatcha .serie input {
   position: absolute;
   left: -20px;
   top: -20px;
 }
 
-.captcha .serie input:checked {
+.tchatcha .serie input:checked {
   height: 40px;
 }

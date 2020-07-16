@@ -9,11 +9,11 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" media="screen" href="css/bootstrap.css">
 
-    <link rel="stylesheet" media="screen" href="assets/captcha/catpcha.css">
-    <link rel="stylesheet" media="screen" href="css/captchacha.css">
+    <link rel="stylesheet" media="screen" href="assets/tchatcha/catpcha.css">
+    <link rel="stylesheet" media="screen" href="css/tchatchacha.css">
 
 
-    <script src="assets/captcha/captcha.js" type="text/javascript"></script>
+    <script src="assets/tchatcha/tchatcha.js" type="text/javascript"></script>
 
   </head>
   <body class="pageunecolonne">
@@ -22,7 +22,7 @@
         <div class="container">
           <div class="row">
 
-            <h1 class="contentTitle">Test Captcha</h1>
+            <h1 class="contentTitle">Test Captcha®</h1>
 
             <article class="col-md-12 rte-content">
               <form id="myForm857" action="" enctype="multipart/form-data" method="post" role="form" autocomplete="off" class=" form-horizontal">
@@ -37,7 +37,7 @@
                   <div class="require">
                     <div class="form-group text">
                       <label for="field1568041519" class="control-label">Prénom&nbsp;<abbr title="Champ obligatoire">*</abbr></label>
-                      <div class="input-group row"><input type="text" name="tx_captchachaform_pi1[field1568041519]" id="field1568041519" value="" autocomplete="off" size="10" class="form-control" placeholder="Prénom" required="required"></div>
+                      <div class="input-group row"><input type="text" name="tx_tchatchachaform_pi1[field1568041519]" id="field1568041519" value="" autocomplete="off" size="10" class="form-control" placeholder="Prénom" required="required"></div>
                     </div>
                   </div>
 
@@ -46,10 +46,10 @@
 
                     <div class="require">
 
-                      <div class="captcha form-group">
+                      <div class="tchatcha form-group">
                         <p class="obligatoires"></p>
 
-                        <div class="captcha"></div>
+                        <div class="tchatcha"></div>
 
                       </div>
 
@@ -73,23 +73,23 @@
 
   document.forms['myForm857'].onsubmit = function(event){
 
-      window.captchaCha.validation(this, function(response, error){
+      window.tchatchaCha.validation(this, function(response, error){
 
           if(!response)
           {
               if(error == 'msgError1')
               {
-                  alert('Merci de remplir le captcha');
+                  alert('Merci de répondre au test');
               }
 
               if(error == 'msgError2')
               {
-                  alert('Erreur sur le captcha. Merci de recommencer');
+                  alert('Erreur sur la réponse au test. Merci de recommencer');
               }
           }
           else
           {
-              alert('Le captcha est ok');
+              alert('Le test est validé');
           }
 
       });

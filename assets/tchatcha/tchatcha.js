@@ -2,25 +2,25 @@
 
 (function(){
 
-	window.captchaCha = {
+	window.tchatchaCha = {
 
-		captchaCha : this,
+		tchatchaCha : this,
 
 		init : () => {
 
-			let elements = document.querySelectorAll('.captcha');
+			let elements = document.querySelectorAll('.tchatcha');
 
 			elements.forEach(function(element){
-				captchaCha.prepare(element);
+				tchatchaCha.prepare(element);
 			});
 
 		},
 
 		prepare : (element) => {
 
-			captchaCha.execute(element, 'render', {}, function(element, result){
+			tchatchaCha.execute(element, 'render', {}, function(element, result){
 
-				captchaCha.render(element, result);
+				tchatchaCha.render(element, result);
 
 			});
 		},
@@ -47,12 +47,12 @@
 
 			var error = 'msgError1';
 
-			var element = parent.querySelector('.captcha');
+			var element = parent.querySelector('.tchatcha');
 
 			var params = {'checkKey' : '', 'test' : ''};
 			if(element) params['checkKey'] = element.getAttribute('data-checkKey');
 
-			var checkBoxes = parent.querySelectorAll("input[name='tx_captchachaform_pi1[captcha][]']");
+			var checkBoxes = parent.querySelectorAll("input[name='tx_tchatchachaform_pi1[tchatcha][]']");
 			for(let i = 0; i < checkBoxes.length; i++)
 			{
 				if(checkBoxes[i].checked)
@@ -63,14 +63,14 @@
 
 			if(params['checkKey'] && params['test'])
 			{
-				captchaCha.execute(element, 'validate', params, function(element, result){
+				tchatchaCha.execute(element, 'validate', params, function(element, result){
 
 					error = '';
 
 					if(!result.response)
 					{
 						error = 'msgError2';
-						captchaCha.render(element, result);
+						tchatchaCha.render(element, result);
 					}
 
                     if(typeof(callback) === "function")
@@ -142,7 +142,7 @@
 							}
 						}
 					};
-				    httpRequest.open('POST', '/assets/captcha/captcha.php', true);
+				    httpRequest.open('POST', '/assets/tchatcha/tchatcha.php', true);
 				    httpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 					httpRequest.setRequestHeader("Content-length", posts.length);
 					httpRequest.setRequestHeader("Connection", "close");
@@ -157,5 +157,5 @@
 })();
 
 document.addEventListener('DOMContentLoaded', function(event){
-    window.captchaCha.init();
+    window.tchatchaCha.init();
 });

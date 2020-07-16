@@ -946,15 +946,15 @@ textarea {
 .pageunecolonne input.form-control {
   height: 55px;
 }
-.captcha strong {
+.tchatcha strong {
   font-weight: 600;
 }
 
-.captcha ul {
+.tchatcha ul {
   padding: 0 !important;
 }
 
-.captcha .serie .control-label {
+.tchatcha .serie .control-label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -965,7 +965,7 @@ textarea {
     font-size: 18px;
     line-height: 1;
 }
-.captcha .serie input:checked + .control-label {
+.tchatcha .serie input:checked + .control-label {
   font-weight: bold;
 }
 form .submit {

@@ -3,13 +3,13 @@
 define("__STRING_LENGTH__", 8);
 define("__KEY_LENGTH__", 3);
 
-class tx_captchachaform_captcha
+class tx_tchatchachaform_tchatcha
 {
 	// Same as class name
-	protected $prefixId = 'tx_captchachaform_pi1';
+	protected $prefixId = 'tx_tchatchachaform_pi1';
 
 	// The extension key.
-	protected $extKey = 'captchacha_form';
+	protected $extKey = 'tchatchacha_form';
 
 	protected $_contentUid = 0;
 
@@ -19,9 +19,9 @@ class tx_captchachaform_captcha
 
 	protected $stringLength = 0;
 	protected $keyLength = 0;
-	protected $captchaString = array();
+	protected $tchatchaString = array();
 
-	protected $captchaKey = "";
+	protected $tchatchaKey = "";
 
 	protected $series = array(
 		'letters' => array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'),
@@ -93,23 +93,23 @@ class tx_captchachaform_captcha
 
 	protected $lang = array(
 		'fr' => array(
-			'form.captcha.rule1' => 'À des fins de sécurité, veuillez sélectionner les <strong>%s premiers caractères</strong> de la série.',
-			'form.captcha.rule2' => 'À des fins de sécurité, veuillez sélectionner les <strong>%s derniers caractères</strong> de la série.',
-			'form.captcha.rule3' => 'À des fins de sécurité, veuillez sélectionner les <strong>%s premiers caractères</strong> et les <strong>%s derniers caractères</strong> de la série.',
-			'form.captcha.rule3.1' => 'À des fins de sécurité, veuillez sélectionner le <strong>premier caractère</strong> et les <strong>%s derniers caractères</strong> de la série.',
-			'form.captcha.rule3.2' => 'À des fins de sécurité, veuillez sélectionner les <strong>%s premiers caractères</strong> et le <strong>dernier caractère</strong> de la série.',
-			'form.captcha.rule4' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les symboles</strong> de la série.',
-			'form.captcha.rule5' => 'À des fins de sécurité, veuillez sélectionner <strong>toutes les lettres</strong> de la série',
-			'form.captcha.rule6' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les chiffres</strong> de la série',
-			'form.captcha.rule7' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les caractères spéciaux</strong> de la série',
-			'form.captcha.rule8' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les caractères avec un accent</strong> de la série',
-			'form.captcha.label' => '',
+			'form.tchatcha.rule1' => 'À des fins de sécurité, veuillez sélectionner les <strong>%s premiers caractères</strong> de la série.',
+			'form.tchatcha.rule2' => 'À des fins de sécurité, veuillez sélectionner les <strong>%s derniers caractères</strong> de la série.',
+			'form.tchatcha.rule3' => 'À des fins de sécurité, veuillez sélectionner les <strong>%s premiers caractères</strong> et les <strong>%s derniers caractères</strong> de la série.',
+			'form.tchatcha.rule3.1' => 'À des fins de sécurité, veuillez sélectionner le <strong>premier caractère</strong> et les <strong>%s derniers caractères</strong> de la série.',
+			'form.tchatcha.rule3.2' => 'À des fins de sécurité, veuillez sélectionner les <strong>%s premiers caractères</strong> et le <strong>dernier caractère</strong> de la série.',
+			'form.tchatcha.rule4' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les symboles</strong> de la série.',
+			'form.tchatcha.rule5' => 'À des fins de sécurité, veuillez sélectionner <strong>toutes les lettres</strong> de la série',
+			'form.tchatcha.rule6' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les chiffres</strong> de la série',
+			'form.tchatcha.rule7' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les caractères spéciaux</strong> de la série',
+			'form.tchatcha.rule8' => 'À des fins de sécurité, veuillez sélectionner <strong>tous les caractères avec un accent</strong> de la série',
+			'form.tchatcha.label' => '',
 			'form.require' => 'Champs obligatoires',
 			'form.error.field' => 'Vous n\'avez pas saisi correctement ce champ',
 			'form.error.global' => 'Le formulaire n\'a pas été saisi correctement.<br />Veuillez corriger les erreurs et valider à nouveau',
-			'form.captcha.fieldset' => 'Validation',
-			'form.captcha.label' => 'La clé de validation',
-			'form.captcha.help' => '',
+			'form.tchatcha.fieldset' => 'Validation',
+			'form.tchatcha.label' => 'La clé de validation',
+			'form.tchatcha.help' => '',
 			'text.number.1' => 'un',
 			'text.number.2' => 'deux',
 			'text.number.3' => 'trois',
@@ -126,7 +126,7 @@ class tx_captchachaform_captcha
 	{
 		$result = array();
 
-		$this->captchaString = array();
+		$this->tchatchaString = array();
 
 		$alphaNumerique = array();
 		foreach($combinaisons as $key => $val)
@@ -141,10 +141,10 @@ class tx_captchachaform_captcha
 
 			if($caractere != '0' && $caractere != 'O')
 			{
-				if (ord($caractere)) array_push($this->captchaString, $caractere);
+				if (ord($caractere)) array_push($this->tchatchaString, $caractere);
 			}
 
-		} while (sizeof($this->captchaString) < $this->stringLength);
+		} while (sizeof($this->tchatchaString) < $this->stringLength);
 
 
 		return $result;
@@ -175,8 +175,8 @@ class tx_captchachaform_captcha
 	private function generateKey()
 	{
 		// reinit
-		$this->captchaKey = '';
-		$this->captchaString = [];
+		$this->tchatchaKey = '';
+		$this->tchatchaString = [];
 		$this->numbers = array();
 
 		// length string
@@ -214,31 +214,31 @@ class tx_captchachaform_captcha
 		{
 			case 'first' :
 
-				$this->captchaString = $this->generateString($rule['series']);
+				$this->tchatchaString = $this->generateString($rule['series']);
 
 				$this->numbers[] = $length;
 
-				$tmp = implode('', $this->captchaString);
+				$tmp = implode('', $this->tchatchaString);
 
-				$this->captchaKey = substr($tmp, 0, $length);
+				$this->tchatchaKey = substr($tmp, 0, $length);
 
 				break;
 
 			case 'last' :
 
-				$this->captchaString = $this->generateString($rule['series']);
+				$this->tchatchaString = $this->generateString($rule['series']);
 
 				$this->numbers[] = $length;
 
-				$tmp = implode('', $this->captchaString);
+				$tmp = implode('', $this->tchatchaString);
 
-				$this->captchaKey = substr($tmp, - $length);
+				$this->tchatchaKey = substr($tmp, - $length);
 
 				break;
 
 			case 'combi' :
 
-				$this->captchaString = $this->generateString($rule['series']);
+				$this->tchatchaString = $this->generateString($rule['series']);
 
 				$_numberArray = $rule['numbers'];
 
@@ -265,18 +265,18 @@ class tx_captchachaform_captcha
 				$_first = $split[0];
 				$_last = $split[1];
 
-				$tmp = implode('', $this->captchaString);
+				$tmp = implode('', $this->tchatchaString);
 
-				$this->captchaKey = substr($tmp, 0, $_first);
-				$this->captchaKey .= substr($tmp, - $_last);
+				$this->tchatchaKey = substr($tmp, 0, $_first);
+				$this->tchatchaKey .= substr($tmp, - $_last);
 
 				break;
 
 			case 'unique' :
 
-				$this->captchaString = $this->generateString($rule['series'][0], $length);
+				$this->tchatchaString = $this->generateString($rule['series'][0], $length);
 
-				$this->captchaKey = implode('', $this->captchaString);
+				$this->tchatchaKey = implode('', $this->tchatchaString);
 
 				$this->numbers[] = $length;
 
@@ -292,15 +292,15 @@ class tx_captchachaform_captcha
 				{
 					if($val == '|s|')
 					{
-						$newCombinaison[$key] = $this->captchaString[$count];
+						$newCombinaison[$key] = $this->tchatchaString[$count];
 						$count++;
 					}
 				}
 
-				//$newCombinaison = array_merge($this->captchaString, $complement);
+				//$newCombinaison = array_merge($this->tchatchaString, $complement);
 
 
-				$this->captchaString = $newCombinaison;
+				$this->tchatchaString = $newCombinaison;
 
 				unset($newCombinaison);
 
@@ -312,18 +312,18 @@ class tx_captchachaform_captcha
 			echo 'numero de la regle : '.$rang.'<br />';
 			echo 'type de regle : '.$rule['type'].'<br />';
 			echo 'nombre de caractère : '.implode(', ', $this->numbers).'<br />';
-			echo 'carctères affichés : '.implode(', ', $this->captchaString).'<br />';
-			echo 'clé à trouver : '.$this->captchaKey.'<br />';
+			echo 'carctères affichés : '.implode(', ', $this->tchatchaString).'<br />';
+			echo 'clé à trouver : '.$this->tchatchaKey.'<br />';
 			//echo $this->rule.'<br />';
 		}
 
-		if($this->captchaKey != '')
+		if($this->tchatchaKey != '')
 		{
 			$this->securCryptKey = $this->generateSecurCryptKey();
 
 			session_start();
-			$_SESSION['tx_captchachaform_captcha_special'][$this->securCryptKey]['expire'] = false;
-			$_SESSION['tx_captchachaform_captcha_special'][$this->securCryptKey]['key'] = $this->captchaKey;
+			$_SESSION['tx_tchatchachaform_tchatcha_special'][$this->securCryptKey]['expire'] = false;
+			$_SESSION['tx_tchatchachaform_tchatcha_special'][$this->securCryptKey]['key'] = $this->tchatchaKey;
 		}
 	}
 
@@ -401,9 +401,9 @@ class tx_captchachaform_captcha
 
 		if(!empty($key) && !empty($test))
 		{
-			if(isset($_SESSION['tx_captchachaform_captcha_special'][$key]))
+			if(isset($_SESSION['tx_tchatchachaform_tchatcha_special'][$key]))
 			{
-				if($_SESSION['tx_captchachaform_captcha_special'][$key]['key'] === $test)
+				if($_SESSION['tx_tchatchachaform_tchatcha_special'][$key]['key'] === $test)
 				{
 					$result = true;
 				}
@@ -421,18 +421,18 @@ class tx_captchachaform_captcha
 		$this->generateKey();
 
 		$result = array(
-			'type' => 'captcha'
+			'type' => 'tchatcha'
 			, 'rules' => $this->rule
 			, 'numbers' => $this->numbers
-			, 'items' => $this->captchaString
+			, 'items' => $this->tchatchaString
 			, 'error' => ''
 			, 'additionalClass' => ''
 		);
 
-		if(is_array($this->_errorArray) && count($this->_errorArray) > 0 && array_key_exists('captcha', $this->_errorArray))
+		if(is_array($this->_errorArray) && count($this->_errorArray) > 0 && array_key_exists('tchatcha', $this->_errorArray))
 		{
 			$result['additionalClass'] = 'has-error';
-			$result['error'] = $this->_errorArray['captcha'];
+			$result['error'] = $this->_errorArray['tchatcha'];
 		}
 
 		return $result;
@@ -453,21 +453,21 @@ class tx_captchachaform_captcha
 			$this->numbers[$key] = $this->lang['fr']['text.number.'.$val];
 		}
 
-		$text = $this->lang['fr']['form.captcha.'.$this->rule];
+		$text = $this->lang['fr']['form.tchatcha.'.$this->rule];
 
 		$result = '<div class="require">';
-		$result .= '<div class="captcha form-group">';
+		$result .= '<div class="tchatcha form-group">';
 		if($this->errors)
 		{
-			$result .= '<p class="help-block error">'.$this->lang['fr']['form.error.field.captcha'].'</p>';
+			$result .= '<p class="help-block error">'.$this->lang['fr']['form.error.field.tchatcha'].'</p>';
 		}
 		//$result .= '<p class="obligatoires">'.$this->lang['fr']['form.require'].'</p>';
 		$result .= '<p class="text-center">'.vsprintf($text, $this->numbers).'</p>';
-		//$result .= ' <label for="'.$this->prefixId.'_captcha" class="control-label">'.$this->lang['fr']['form.captcha.label'].'</label>';
+		//$result .= ' <label for="'.$this->prefixId.'_tchatcha" class="control-label">'.$this->lang['fr']['form.tchatcha.label'].'</label>';
 		$result .= '<ul class="serie list-inline list-unstyled text-center">';
-		foreach($this->captchaString as $key => $val)
+		foreach($this->tchatchaString as $key => $val)
 		{
-			$result .= '<li><input name="'.$this->prefixId.'[captcha][]" id="'.$this->prefixId.'_captcha_opt'.($key + 1).'" value="'.$val.'" type="checkbox" /><label for="'.$this->prefixId.'_captcha_opt'.($key + 1).'" class="control-label">'.$val.'</label></li>';
+			$result .= '<li><input name="'.$this->prefixId.'[tchatcha][]" id="'.$this->prefixId.'_tchatcha_opt'.($key + 1).'" value="'.$val.'" type="checkbox" /><label for="'.$this->prefixId.'_tchatcha_opt'.($key + 1).'" class="control-label">'.$val.'</label></li>';
 		}
 		$result .= '</ul>';
 		$result .= '</div>';
@@ -506,7 +506,7 @@ if(!empty($_POST))
 
 $result = ['error' => '', 'response' => '', 'html' => '', 'debug' => '', 'checkKey' => ''];
 
-$secure = new tx_captchachaform_captcha();
+$secure = new tx_tchatchachaform_tchatcha();
 
 //$result['debug'] = $_POST;
 
@@ -538,7 +538,7 @@ switch(trim($arguments['action']))
 
 		if(!$result['response'])
 		{
-			unset($_SESSION['tx_captchachaform_captcha_special'][$arguments['checkKey']]);
+			unset($_SESSION['tx_tchatchachaform_tchatcha_special'][$arguments['checkKey']]);
 
 			$result['html'] = $secure->makeHtmlCode();
 			$result['checkKey'] = $secure->getSecurCryptKey();
