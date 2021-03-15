@@ -71,7 +71,7 @@ class Base32 {
         }
         return $binaryString;
     }
-}
+
 
 	public function makeHtmlCode()
 	{
@@ -467,7 +467,7 @@ class Base32 {
 
 		for($i=0;$i<strlen($hex);$i++)
 		{
-			$bin.=str_pad(decbin(hexdec($hex{$i})),4,'0',STR_PAD_LEFT);
+			$bin.=str_pad(decbin(hexdec($hex[$i])),4,'0',STR_PAD_LEFT);
 		}
 
 		return $bin;
@@ -486,4 +486,4 @@ class Base32 {
 		return strrev($hex);
 	}
 
-?>
+}
