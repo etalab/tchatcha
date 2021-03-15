@@ -119,6 +119,8 @@ class tx_tchatchachaform_tchatcha
 		)
 	);
 
+	public $errors;
+
 	// + -----------------------------------------------------------------------
 	// Méthode pour générer la chaine
 	// + -----------------------------------------------------------------------
@@ -307,7 +309,7 @@ class tx_tchatchachaform_tchatcha
 				break;
 		}
 
-		if($_GET['debug'])
+		if(isset($_GET['debug']) && $_GET['debug'])
 		{
 			echo 'numero de la regle : '.$rang.'<br />';
 			echo 'type de regle : '.$rule['type'].'<br />';
@@ -321,7 +323,9 @@ class tx_tchatchachaform_tchatcha
 		{
 			$this->securCryptKey = $this->generateSecurCryptKey();
 
-			session_start();
+			if (session_status() === PHP_SESSION_NONE) {
+				session_start();
+			}
 			$_SESSION['tx_tchatchachaform_tchatcha_special'][$this->securCryptKey]['expire'] = false;
 			$_SESSION['tx_tchatchachaform_tchatcha_special'][$this->securCryptKey]['key'] = $this->tchatchaKey;
 		}
@@ -356,7 +360,7 @@ class tx_tchatchachaform_tchatcha
 		{
 			$pos = rand(0, $count);
 
-			$letter = $letters[$pos];
+			$letter = isset($letters[$pos]) ? $letters[$pos] : '';
 			if(!empty($letter) && !in_array($letter, $result))
 			{
 				array_push($result, $letter);
@@ -397,7 +401,9 @@ class tx_tchatchachaform_tchatcha
 	{
 		$result = false;
 
-		session_start();
+		if (session_status() === PHP_SESSION_NONE) {
+			session_start();
+		}
 
 		if(!empty($key) && !empty($test))
 		{
@@ -550,5 +556,3 @@ switch(trim($arguments['action']))
 unset($secure);
 
 echo json_encode($result);
-
-?>
